@@ -2,4 +2,29 @@
 
 # focus-on-mac
 
-Super simple focus app for Mac. Sends hourly notifications on the focus you set or reminds you to set one.
+Super simple focus app for Mac. Set focus and call it to notify you every so often.
+
+# Usage
+
+```
+❯ focus-on -h
+Usage: focus-on [OPTIONS] [FOCUS]...
+
+Arguments:
+  [FOCUS]...
+
+Options:
+  -n, --notify
+  -h, --help     Print help information
+  -V, --version  Print version information
+```
+
+```
+focus-on Finishing important project.
+```
+
+Also need to setup a cron to run in which ever interval you want like once per hour:
+
+```
+focus-on --notify
+```
