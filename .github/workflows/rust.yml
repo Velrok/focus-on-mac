@@ -19,10 +19,22 @@ jobs:
         run: cargo build --verbose
       - name: Run tests
         run: cargo test --verbose
-
-  release:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Rust Release binary
-        uses: rust-build/rust-build.action@v1.4.0
+      - name: Set build version
+        id: version
+        shell: bash
+        run: |
+          VERSION="$(cat Cargo.toml | grep 'version =' -m 1 | sed 's@version =@@' | xargs)"
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "::notice::publish build version $VERSION"
+      - name: Upload macOS binary to release
+        uses: Spikatrix/upload-release-action@b713c4b73f0a8ddda515820c124efc6538685492
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/x86_64-apple-darwin/release/${{ env.BINARY_NAME }}
+          asset_name: ${{ env.BINARY_NAME }}-macos
+          target_commit: ${{ github.sha }}
+          tag: v${{ env.RELEASE_VERSION }}
+          release_name: v${{ env.RELEASE_VERSION }}
+          prerelease: false
+          overwrite: true
+          body: ${{ env.BINARY_NAME }} release
