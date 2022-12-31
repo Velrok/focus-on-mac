@@ -9,7 +9,7 @@ Super simple focus app for Mac. Set focus and call it to notify you every so oft
 
 # Usage
 
-```
+```bash
 ❯ focus-on -h
 Usage: focus-on [OPTIONS] [FOCUS]...
 
@@ -22,12 +22,18 @@ Options:
   -V, --version  Print version information
 ```
 
-```
+```bash
 focus-on Finishing important project.
 ```
 
 Also need to setup a cron to run in which ever interval you want like once per hour:
 
+```bash
+❯ crontab -e # to edit your cronjob table
 ```
-focus-on --notify
+
+Example to run this on the hour between 8am and 5pm
+
+```crontable
+00 8-17 * * * focus-on --notify
 ```
