@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 clap = {version = "4.0.32", features = ["derive"]}
+mac-notification-sys = "0.5.6"
