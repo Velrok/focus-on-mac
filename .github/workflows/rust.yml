@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  BINARY_NAME: focus-on-mac
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --verbose --release
       - name: Run tests
         run: cargo test --verbose
       - name: Set build version
@@ -30,7 +31,7 @@ jobs:
         uses: Spikatrix/upload-release-action@b713c4b73f0a8ddda515820c124efc6538685492
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/x86_64-apple-darwin/release/${{ env.BINARY_NAME }}
+          file: target/release/${{ env.BINARY_NAME }}
           asset_name: ${{ env.BINARY_NAME }}-macos
           target_commit: ${{ github.sha }}
           tag: v${{ env.RELEASE_VERSION }}
