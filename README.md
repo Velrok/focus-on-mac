@@ -4,6 +4,9 @@
 
 Super simple focus app for Mac. Set focus and call it to notify you every so often.
 
+<img width="375" alt="Screenshot 2022-12-31 at 19 19 17" src="https://user-images.githubusercontent.com/34974/210153754-3a0c6ec6-6e73-4946-8796-697fcdfdc90a.png">
+
+
 # Usage
 
 ```
